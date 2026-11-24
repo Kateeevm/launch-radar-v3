@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch Radar — pre-token protocols ranked by fitted implied value, farmed on paper first</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true"></div>
+    <div>
+      <h1>Launch Radar</h1>
+      <p class="tagline">Pre-token protocols ranked by a value model fitted on the snapshot itself — and every verdict priced as a farm: what the plan earns, what it costs, and how wrong the price has been when it could be checked.</p>
+    </div>
+  </div>
+  <div class="asof" id="asof"></div>
+</header>
+
+<section class="kpis" id="kpis" aria-label="Headline figures"></section>
+
+<section class="vstrip" id="vstrip" aria-label="Self-verification"></section>
+
+<section class="formula" id="formula" aria-label="The fitted formula"></section>
+
+<section class="scenario" id="scenario" aria-label="Farming scenario">
+  <div class="sc-head">
+    <span class="sc-title">Price the farm your way</span>
+    <span class="sc-note" id="sc-note"></span>
+  </div>
+  <div class="sc-grid">
+    <label class="ctl">Your deposit ($)
+      <input id="sc-deposit" type="number" min="0" step="50" placeholder="per plan">
+    </label>
+    <label class="ctl">Drop share (% of the launch)
+      <input id="sc-drop" type="number" min="0" max="100" step="0.5" value="5">
+    </label>
+    <label class="ctl">Horizon (weeks)
+      <input id="sc-weeks" type="number" min="1" max="52" step="1" placeholder="per plan">
+    </label>
+    <label class="ctl">T-bill yield (% a year)
+      <input id="sc-tbill" type="number" min="0" max="20" step="0.25" value="4">
+    </label>
+    <div class="ctl sc-actions">
+      <button id="sc-reset" class="viewbtn" type="button">Back to the printed board</button>
+    </div>
+    <p class="sc-verdicts" id="sc-verdicts"></p>
+  </div>
+</section>
+
+<section class="evidence" id="evidence" aria-label="Evidence">
+  <div class="ev-card" id="ev-ablation"></div>
+  <div class="ev-card" id="ev-honesty"></div>
+  <div class="ev-card" id="ev-ledger"></div>
+  <div class="ev-card" id="ev-scatter"></div>
+</section>
+
+<section class="controls" aria-label="Board controls">
+  <label class="ctl grow">Search
+    <input id="q" type="search" placeholder="Protocol name or slug" autocomplete="off">
+  </label>
+  <label class="ctl">Category
+    <select id="f-category"></select>
+  </label>
+  <label class="ctl">Chain
+    <select id="f-chain"></select>
+  </label>
+  <label class="ctl">Verdict
+    <select id="f-verdict">
+      <option value="">All verdicts</option>
+      <option value="FARM">Farm</option>
+      <option value="THIN">Thin</option>
+      <option value="SKIP">Skip</option>
+    </select>
+  </label>
+  <label class="ctl check">
+    <input id="f-watch" type="checkbox"> Watchlist only
+  </label>
+  <div class="ctl views" role="group" aria-label="Export">
+    <button id="x-csv" class="viewbtn" type="button">CSV</button>
+    <button id="x-json" class="viewbtn" type="button">JSON</button>
+  </div>
+  <div class="ctl views" role="group" aria-label="View">
+    <button id="v-board" class="viewbtn active" type="button">Pre-token board</button>
+    <button id="v-live" class="viewbtn" type="button">Live tokens</button>
+    <button id="v-model" class="viewbtn" type="button">The model</button>
+  </div>
+</section>
+
+<main>
+  <section id="board-wrap">
+    <table id="board" aria-label="Ranked pre-token protocols">
+      <thead id="board-head"></thead>
+      <tbody id="board-body"></tbody>
+    </table>
+    <p class="empty" id="board-empty" hidden>No protocol matches those filters. Loosen one and the radar sweeps again.</p>
+  </section>
+
+  <section id="detail" hidden aria-label="Protocol detail"></section>
+
+  <section id="model" hidden aria-label="How the model is fitted and tested"></section>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
